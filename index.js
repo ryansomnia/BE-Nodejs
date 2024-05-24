@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 const router = require('./router');
 
 const app = express()
-
+console.log('====================================');
+console.log('hai');
+console.log('====================================');
 require('dotenv').config();
 const port = process.env.PORT
 
