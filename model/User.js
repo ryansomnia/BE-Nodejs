@@ -1,4 +1,4 @@
-const conn = require("../config/mysql");
+const conn = require("../config/db/mysql");
 
 let user = {
   getAllUser: async (result) => {
@@ -38,6 +38,18 @@ let user = {
     console.log("====================================");
     return result(null, res);
 
-  })}
+  })},
+  createUser: async (newUser, callback) => {
+    const { fullName, username, password, email } = newUser;
+    const qry = `INSERT INTO Users (fullName, username, password, email) VALUES ('${fullName}', '${username}', '${password}', '${email}')`;
+    conn.query(qry, (err, res) => {
+      if (err) {
+       
+        result(null, err);
+        return;
+      }
+          result(null, res);
+    });
+  },
 };
 module.exports = user;
